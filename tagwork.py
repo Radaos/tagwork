@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Tag the name field in Zwift workouts with an ID in the form [n], where n in an integer.
+Tags the name field in Zwift workouts with an ID in the form [n], where n is an integer.
 This ID indicates the group they belong to, it can be used to filter for a workout group in Golden Cheetah.
 The user will be prompted to choose a directory containing workout files to process.
-Output files are written to a directory of a similar name, with a suffix of _tagged.
+It creates a new output directory with the suffix _tagged in the same parent directory as the input.
 
 Author: Robert Drohan
 Copyright: Copyright 2025, Robert Drohan
 License: GPLv3
-Version: 1.01
+Version: 1.02
 Status: Release
 """
 
@@ -24,9 +24,7 @@ def open_dir_dialog(user_msg):
     """Ask the user to specify a directory."""
     default_dir = 'C:\\'
     selected_dir = askdirectory(title=user_msg, initialdir=default_dir)
-    if selected_dir:
-        return selected_dir
-    exit("No directory selected.")
+    return selected_dir or None
 
 
 def make_path(path):
@@ -36,6 +34,28 @@ def make_path(path):
     except OSError as exception:
         if exception.errno != errno.EEXIST:
             raise
+
+
+def update_workout_xml(xml_content, group_id, file_stem):
+    """Update the <name> and <description> elements in the XML."""
+    try:
+        xml_root = ET.fromstring(xml_content)
+    except ET.ParseError as error:
+        raise ValueError(f"XML parse error: {error}")
+
+    # Update <name>
+    name_element = xml_root.find("name")
+    if name_element is None:
+        name_element = ET.SubElement(xml_root, "name")
+    name_element.text = (name_element.text or "") + f" [{group_id}]"
+
+    # Update <description>
+    desc_element = xml_root.find("description")
+    if desc_element is None:
+        desc_element = ET.SubElement(xml_root, "description")
+    desc_element.text = (desc_element.text or "") + f" {file_stem}"
+
+    return ET.tostring(xml_root, encoding="unicode")
 
 
 def main():
@@ -48,8 +68,13 @@ def main():
 
     # Ask the user for the source directory containing workout files
     in_dir_root = open_dir_dialog("Select workout directory")
-    dir_nodes = os.path.split(in_dir_root)
-    out_root_dir = os.path.join(dir_nodes[0], f"{dir_nodes[1]}_tagged")
+    root.destroy()
+    if not in_dir_root:
+        print("No directory selected. Exiting.", file=sys.stderr)
+        sys.exit(1)
+
+    in_dir_root_parent, in_dir_root_name = os.path.split(in_dir_root)
+    out_root_dir = os.path.join(in_dir_root_parent, f"{in_dir_root_name}_tagged")
     make_path(out_root_dir)
 
     # Walk through the directory tree
@@ -57,44 +82,30 @@ def main():
         dir_count += 1
         for in_filename in filename_list:
             in_fullpath = os.path.join(cur_dir_name, in_filename)
-
-            # Process Zwift files with a .zwo or .xml extension
-            fnx, file_extension = os.path.splitext(in_filename)
-            if file_extension in ['.zwo', '.xml']:
+            file_stem, file_extension = os.path.splitext(in_filename)
+            if file_extension.lower() in ['.zwo', '.xml']:
                 try:
-                    # Open file with error handling for invalid UTF characters.
                     with open(in_fullpath, "r", encoding="utf-8", errors="replace") as xfile:
                         xml_content = xfile.read()
-
-                    # Parse the cleaned up XML content
-                    root = ET.fromstring(xml_content)
-
-                except (IOError, ET.ParseError) as error:
-                    print(f"Error processing file {in_fullpath}: {error}")
+                    updated_xml = update_workout_xml(xml_content, dir_count, file_stem)
+                except (IOError, ValueError) as error:
+                    print(f"Error processing file {in_fullpath}: {error}", file=sys.stderr)
                     continue
 
-                # Find and update the <name> element in the XML.
-                name_element = root.find("name")
-                if name_element is not None:
-                    # Add the group ID to the name element
-                    name_element.text += f" [{dir_count}]"
-                    updated_xml = ET.tostring(root, encoding="unicode")
+                # Prepare output path
+                relative_path = os.path.relpath(in_fullpath, in_dir_root)
+                inter_path = os.path.join(out_root_dir, relative_path)
+                inter_dirname = os.path.dirname(inter_path)
+                out_dirname = f"{inter_dirname}_[{dir_count}]"
+                output_fullpath = os.path.join(out_dirname, in_filename)
+                make_path(out_dirname)
 
-                    # Create the output file and write the updated XML to it.
-                    relative_path = os.path.relpath(in_fullpath, in_dir_root)
-                    inter_path = os.path.join(out_root_dir, relative_path)
-                    inter_dirname = os.path.dirname(inter_path)
-                    # Create the new directory name with the suffix
-                    out_dirname = f"{inter_dirname}_[{dir_count}]"
-                    output_fullpath = os.path.join(out_dirname, in_filename)
-                    make_path(out_dirname)
-
-                    try:
-                        with open(output_fullpath, "w", encoding="utf-8") as xfile:
-                            xfile.write(updated_xml)
-                        file_count += 1
-                    except IOError as error:
-                        print(f"Error writing to file {output_fullpath}: {error}")
+                try:
+                    with open(output_fullpath, "w", encoding="utf-8") as xfile:
+                        xfile.write(updated_xml)
+                    file_count += 1
+                except IOError as error:
+                    print(f"Error writing to file {output_fullpath}: {error}", file=sys.stderr)
 
     print(f"Processed {dir_count} groups, {file_count} files.")
 
