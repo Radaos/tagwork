@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Tags the name field in Zwift workouts with an ID in the form [n], where n is an integer.
+Tags the name field in Zwift workouts with an ID in the form [n], where n is numeric.
 This ID indicates the group they belong to, it can be used to filter for a workout group in Golden Cheetah.
-The user will be prompted to choose a directory containing workout files to process.
-It creates a new output directory with the suffix _tagged in the same parent directory as the input.
+Usage: On run, the user will be prompted to choose a directory containing workout files to process.
+A new output directory with the suffix _tagged will be created in the same parent directory as the input.
 
 Author: Robert Drohan
 Copyright: Copyright 2025, Robert Drohan
@@ -60,87 +60,94 @@ def update_workout_xml(xml_content, group_id, file_dir):
 
 
 def main():
-    file_count = 0
+    processed_file_count = 0
 
     # Initialize Tkinter and hide the root window
-    root = tk.Tk()
-    root.withdraw()
+    tk_root_window = tk.Tk()
+    tk_root_window.withdraw()
 
     # Ask the user for the source directory containing workout files
-    in_dir_root = open_dir_dialog("Select workout directory")
-    root.destroy()
-    if not in_dir_root:
+    input_workout_root_dir = open_dir_dialog("Select workout directory")
+    tk_root_window.destroy()
+    if not input_workout_root_dir:
         print("No directory selected. Exiting.", file=sys.stderr)
         sys.exit(1)
 
-    in_dir_root_parent, in_dir_root_name = os.path.split(in_dir_root)
-    out_root_dir = os.path.join(in_dir_root_parent, f"{in_dir_root_name}_tagged")
-    make_path(out_root_dir)
+    input_root_parent_dir, input_root_dir_name = os.path.split(input_workout_root_dir)
+    output_tagged_root_dir = os.path.join(input_root_parent_dir, f"{input_root_dir_name}_tagged")
+    make_path(output_tagged_root_dir)
 
     # Maps input dir path to its hierarchical id (e.g., "2.1.3")
-    dir_id_map = {in_dir_root: ""}
+    directory_id_map = {input_workout_root_dir: ""}
     # Maps input dir path to the next child number
-    child_counter_map = {}
+    child_directory_counter_map = {}
 
-    for cur_dir_name, subdir_list, filename_list in os.walk(in_dir_root, topdown=True):
+    for current_directory, subdirectories, filenames in os.walk(input_workout_root_dir, topdown=True):
         # Get parent id
-        parent_dir = os.path.dirname(cur_dir_name)
-        parent_id = dir_id_map.get(parent_dir, "")
+        parent_directory = os.path.dirname(current_directory)
+        parent_group_id = directory_id_map.get(parent_directory, "")
 
         # Assign id to current directory if not top-level
-        if cur_dir_name == in_dir_root:
-            cur_id = ""
+        if current_directory == input_workout_root_dir:
+            current_group_id = ""
         else:
             # Get next child number for parent
-            child_num = child_counter_map.get(parent_dir, 1)
-            cur_id = f"{parent_id}-{child_num}" if parent_id else f"{child_num}"
-            dir_id_map[cur_dir_name] = cur_id
-            child_counter_map[parent_dir] = child_num + 1
+            next_child_number = child_directory_counter_map.get(parent_directory, 1)
+            current_group_id = f"{parent_group_id}-{next_child_number}" if parent_group_id else f"{next_child_number}"
+            directory_id_map[current_directory] = current_group_id
+            child_directory_counter_map[parent_directory] = next_child_number + 1
 
         # Prepare id assignment for subdirectories
-        child_counter_map[cur_dir_name] = 1
+        child_directory_counter_map[current_directory] = 1
 
-        for in_filename in filename_list:
-            in_fullpath = os.path.join(cur_dir_name, in_filename)
-            file_stem, file_extension = os.path.splitext(in_filename)
+        for filename in filenames:
+            input_file_path = os.path.join(current_directory, filename)
+            file_stem, file_extension = os.path.splitext(filename)
             if file_extension.lower() in ['.zwo', '.xml']:
                 try:
-                    with open(in_fullpath, "r", encoding="utf-8", errors="replace") as xfile:
-                        xml_content = xfile.read()
-                    group_id = dir_id_map.get(cur_dir_name, "")
-                    basedir = os.path.basename(os.path.normpath(cur_dir_name))
-                    updated_xml = update_workout_xml(xml_content, group_id, 'File: ' + basedir + '/ ' + file_stem)
+                    with open(input_file_path, "r", encoding="utf-8", errors="replace") as xml_file:
+                        xml_content = xml_file.read()
+                    group_id = directory_id_map.get(current_directory, "")
+                    normalized_current_dir = os.path.normpath(current_directory)
+                    base_dir_name = os.path.basename(normalized_current_dir)
+                    parent_dir_path = os.path.normpath(os.path.dirname(normalized_current_dir))
+                    parent_base_dir_name = os.path.basename(parent_dir_path)
+                    updated_xml = update_workout_xml(
+                        xml_content,
+                        group_id,
+                        'File:' + parent_base_dir_name + '/' + base_dir_name + '/' + file_stem
+                    )
                 except (IOError, ValueError) as error:
-                    print(f"Error processing file {in_fullpath}: {error}", file=sys.stderr)
+                    print(f"Error processing file {input_file_path}: {error}", file=sys.stderr)
                     continue
 
             # Prepare output path
-            relative_path = os.path.relpath(in_fullpath, in_dir_root)
-            relative_dir = os.path.dirname(relative_path)
-            if relative_dir == "":
+            relative_input_path = os.path.relpath(input_file_path, input_workout_root_dir)
+            relative_input_dir = os.path.dirname(relative_input_path)
+            if relative_input_dir == "":
                 # File is in the top-level input directory
-                out_dirname = out_root_dir
+                output_directory = output_tagged_root_dir
             else:
                 # Build the output path, tagging every directory in the path
-                parts = relative_dir.split(os.sep)
-                tagged_parts = []
-                path_so_far = in_dir_root
-                for part in parts:
-                    path_so_far = os.path.join(path_so_far, part)
-                    tag = dir_id_map.get(path_so_far, "")
-                    tagged_parts.append(f"{part}_[{tag}]")
-                out_dirname = os.path.join(out_root_dir, *tagged_parts)
-            make_path(out_dirname)
-            output_fullpath = os.path.join(out_dirname, in_filename)
+                directory_parts = relative_input_dir.split(os.sep)
+                tagged_directory_parts = []
+                path_accumulator = input_workout_root_dir
+                for directory_part in directory_parts:
+                    path_accumulator = os.path.join(path_accumulator, directory_part)
+                    group_tag = directory_id_map.get(path_accumulator, "")
+                    tagged_directory_parts.append(f"{directory_part}_[{group_tag}]")
+                output_directory = os.path.join(output_tagged_root_dir, *tagged_directory_parts)
+            make_path(output_directory)
+            output_file_path = os.path.join(output_directory, filename)
 
             try:
-                with open(output_fullpath, "w", encoding="utf-8") as xfile:
-                    xfile.write(updated_xml)
-                file_count += 1
+                with open(output_file_path, "w", encoding="utf-8") as xml_file:
+                    xml_file.write(updated_xml)
+                processed_file_count += 1
             except IOError as error:
-                print(f"Error writing to file {output_fullpath}: {error}", file=sys.stderr)
+                print(f"Error writing to file {output_file_path}: {error}", file=sys.stderr)
 
-    print(f"Processed {len(dir_id_map)-1} groups, {file_count} files.")
+    print(f"Processed {len(directory_id_map)-1} groups, {processed_file_count} files.")
 
 
 if __name__ == "__main__":
