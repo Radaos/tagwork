@@ -1,7 +1,7 @@
-# Project Specification Document\
-## Project Title: Tagwork Purpose: To enhance the organization and filtering of Zwift workout files by tagging workout metadata with hierarchical group identifiers derived from file structure.\
+# Project Specification Document
+## Project Title: Tagwork Purpose: To enhance the organization and filtering of Zwift workout files by tagging workout metadata with hierarchical group identifiers derived from file structure.
 
-## Functional Requirements\
+## Functional Requirements
 Workout Tagging System\
 The application shall append a tag to each Zwift workout’s <name> field in one of the following formats:\
 [i] — for workouts in a single-layer directory.\
@@ -22,7 +22,6 @@ The tagged <name> and enriched <description> fields shall be compatible with fil
 The tagging shall enhance searchability and categorization of workouts based on their group hierarchy.
 
 ## Design Specifications
-
 Technology Stack\
 The application shall be developed using the Python programming language.\
 It shall be compatible with standard Python environments and require no external dependencies beyond the standard library.\
@@ -41,4 +40,5 @@ The application shall scan directories containing workout files.\
 Each directory shall be treated as a distinct group, and nested directories shall be interpreted as sub-groups.\
 The full directory path shall be prepended to the <description> field of each workout XML file.\
 License\
+
 The project shall be released under the GNU General Public License v3.0 (GPL-3.0), allowing free use, modification, and distribution under the same license terms.\
