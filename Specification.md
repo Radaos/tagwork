@@ -1,7 +1,7 @@
 # Project Specification Document
 ## Project Title: Tagwork
 ## Purpose: To enhance the organization and filtering of Zwift workout files by tagging workout metadata with hierarchical group identifiers derived from file structure.
-\
+
 ## Functional Requirements
 Workout Tagging System\
 The application shall append a tag to each Zwift workout’s <name> field in one of the following formats:\
