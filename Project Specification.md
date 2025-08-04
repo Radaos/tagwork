@@ -33,12 +33,14 @@ README.md: Documentation outlining usage, purpose, and setup instructions.\
 LICENSE: Legal file specifying the use of the GPL-3.0 license.\
 GC_workout_filter.png: Optional visual aid demonstrating the filtering effect in Golden Cheetah.\
 **Tag Format**\
-Tags shall strictly follow either the [i], [i-j], or [i-j-k] format.\
+Tags shall strictly follow either the [i], [i-j], or [i-j-k] format, where each part of the tag is an integer.\
 Tags shall be appended to the <name> field of each workout XML file.\
 The application shall validate tag format consistency across all processed workouts.\
 **Directory-Based Grouping**\
-The application shall scan directories containing workout files.\
-Each directory shall be treated as a distinct group, and nested directories shall be interpreted as sub-groups.\
+The application shall prompt the user for the top level directory containing workout files, or subdirectories containing these files.
+Scan all directories for workout files, starting from the top level.\
+Each directory shall be treated as a distinct group and assigned an integer identifier, which shall be appended to the directory name.
 The full directory path shall be prepended to the <description> field of each workout XML file.\
 **License**\
 The project shall be released under the GNU General Public License v3.0 (GPL-3.0), allowing free use, modification, and distribution under the same license terms.
+
