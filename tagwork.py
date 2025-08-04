@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Tags the name field in Zwift workouts with an ID in the form [n], where n is numeric.
-This ID indicates the group they belong to, it can be used to filter for a workout group in Golden Cheetah.
+Tags the name field in Zwift format workout files with an ID in the form [i] or [i-j], where i, j are integers identifying 
+a workout set within a file hierarchy.
+The ID can be used to filter for a workout group in Golden Cheetah or other software.
+The description field is also updated to show where the workout is located in a hierarchy.
 Usage: On run, the user will be prompted to choose a directory containing workout files to process.
 A new output directory with the suffix _tagged will be created in the same parent directory as the input.
 
@@ -154,3 +156,4 @@ if __name__ == "__main__":
     if sys.version_info[0] < 3:
         raise Exception("Aborting. Python 3 must be installed!")
     main()
+
