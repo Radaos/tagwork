@@ -1,5 +1,6 @@
 # Project Specification Document
-## Project Title: Tagwork Purpose: To enhance the organization and filtering of Zwift workout files by tagging workout metadata with hierarchical group identifiers derived from file structure.
+## Project Title: Tagwork 
+## Purpose: To enhance the organization and filtering of Zwift workout files by tagging workout metadata with hierarchical group identifiers derived from file structure.
 
 ## Functional Requirements
 Workout Tagging System\
@@ -42,3 +43,4 @@ The full directory path shall be prepended to the <description> field of each wo
 License\
 
 The project shall be released under the GNU General Public License v3.0 (GPL-3.0), allowing free use, modification, and distribution under the same license terms.\
+
