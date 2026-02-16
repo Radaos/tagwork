@@ -8,9 +8,9 @@ Usage: On run, the user will be prompted to choose a directory containing workou
 A new output directory with the suffix _tagged will be created in the same parent directory as the input.
 
 Author: Robert Drohan
-Copyright: Copyright 2025, Robert Drohan
+Copyright: Copyright 2026, Robert Drohan
 License: GPLv3
-Version: 1.02
+Version: 1.03
 Status: Release
 """
 
@@ -19,6 +19,7 @@ import os
 import errno
 import tkinter as tk
 from tkinter.filedialog import askdirectory
+from tkinter import simpledialog
 import xml.etree.ElementTree as ET
 
 
@@ -49,7 +50,9 @@ def update_workout_xml(xml_content, group_id, file_dir):
     name_element = xml_root.find("name")
     if name_element is None:
         name_element = ET.SubElement(xml_root, "name")
-    name_element.text = (name_element.text or "") + f" [{group_id}]"
+    # Only append a group id tag when one is provided (avoid adding '[]' or 'None')
+    if group_id:
+        name_element.text = (name_element.text or "") + f" [{group_id}]"
 
     # Update <description>
     desc_element = xml_root.find("description")
@@ -68,6 +71,16 @@ def main():
     tk_root_window = tk.Tk()
     tk_root_window.withdraw()
 
+    # Prompt the user to enter a fixed group_id to use for all workouts.
+    # If the user leaves it blank or cancels, auto-generated IDs will be used.
+    group_id_override = simpledialog.askstring(
+        "Group ID",
+        "Enter group ID to use for all files (e.g. '1' or '1-2'), or leave blank to use auto-generated IDs",
+        parent=tk_root_window,
+    )
+    if group_id_override is not None:
+        group_id_override = group_id_override.strip() or None
+
     # Ask the user for the source directory containing workout files
     input_workout_root_dir = open_dir_dialog("Select workout directory")
     tk_root_window.destroy()
@@ -76,7 +89,11 @@ def main():
         sys.exit(1)
 
     input_root_parent_dir, input_root_dir_name = os.path.split(input_workout_root_dir)
-    output_tagged_root_dir = os.path.join(input_root_parent_dir, f"{input_root_dir_name}_tagged")
+    if group_id_override:
+        # Include the manual group id in the output root folder name so top-level files are tagged
+        output_tagged_root_dir = os.path.join(input_root_parent_dir, f"{input_root_dir_name}_[{group_id_override}]_tagged")
+    else:
+        output_tagged_root_dir = os.path.join(input_root_parent_dir, f"{input_root_dir_name}_tagged")
     make_path(output_tagged_root_dir)
 
     # Maps input dir path to its hierarchical id (e.g., "2.1.3")
@@ -84,7 +101,7 @@ def main():
     # Maps input dir path to the next child number
     child_directory_counter_map = {}
 
-    for current_directory, subdirectories, filenames in os.walk(input_workout_root_dir, topdown=True):
+    for current_directory, _subdirectories, filenames in os.walk(input_workout_root_dir, topdown=True):
         # Get parent id
         parent_directory = os.path.dirname(current_directory)
         parent_group_id = directory_id_map.get(parent_directory, "")
@@ -109,7 +126,8 @@ def main():
                 try:
                     with open(input_file_path, "r", encoding="utf-8", errors="replace") as xml_file:
                         xml_content = xml_file.read()
-                    group_id = directory_id_map.get(current_directory, "")
+                    # If the user specified a fixed group id, use it; otherwise use auto-generated id
+                    group_id = group_id_override if group_id_override is not None else directory_id_map.get(current_directory, "")
                     normalized_current_dir = os.path.normpath(current_directory)
                     base_dir_name = os.path.basename(normalized_current_dir)
                     parent_dir_path = os.path.normpath(os.path.dirname(normalized_current_dir))
@@ -136,7 +154,8 @@ def main():
                 path_accumulator = input_workout_root_dir
                 for directory_part in directory_parts:
                     path_accumulator = os.path.join(path_accumulator, directory_part)
-                    group_tag = directory_id_map.get(path_accumulator, "")
+                    # Use the override tag when provided, otherwise use the generated directory id
+                    group_tag = group_id_override if group_id_override is not None else directory_id_map.get(path_accumulator, "")
                     tagged_directory_parts.append(f"{directory_part}_[{group_tag}]")
                 output_directory = os.path.join(output_tagged_root_dir, *tagged_directory_parts)
             make_path(output_directory)
