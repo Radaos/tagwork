@@ -1,0 +1,22 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W5D2 - Endurance Recovery Ride</name>
+  <description>Easy endurance to support recovery from VO2 work and prepare for Sweet Spot.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Endurance" />
+    <tag name="Recovery" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="6-minute easy warm-up." />
+    <Warmup Duration="360" PowerLow="0.50" PowerHigh="0.65" />
+    <textevent timeoffset="360" message="Easy endurance ride. Focus on recovery and spinning smoothly." />
+    <SteadyState Duration="900" Power="0.65" cadence="90" />
+    <textevent timeoffset="1260" message="Very easy recovery spin (3 minutes)." />
+    <SteadyState Duration="180" Power="0.50" cadence="85" />
+    <textevent timeoffset="1440" message="Back to easy endurance pace for the final block." />
+    <SteadyState Duration="900" Power="0.65" cadence="90" />
+    <textevent timeoffset="2340" message="Great recovery ride! Cool down for 6 minutes." />
+    <Cooldown Duration="360" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

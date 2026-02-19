@@ -1,0 +1,32 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W4D2 - Cadence + Endurance Mix</name>
+  <description>Endurance riding with alternating high and low cadence for MTB versatility.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Cadence" />
+    <tag name="Endurance" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="6-minute warm-up." />
+    <Warmup Duration="360" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="360" message="Start with high cadence (100 rpm) at moderate power. Smooth pedaling." />
+    <SteadyState Duration="240" Power="0.70" cadence="100" />
+    <textevent timeoffset="600" message="Switch to low cadence (65 rpm). Feel the increased muscular work for MTB strength." />
+    <SteadyState Duration="240" Power="0.70" cadence="65" />
+    <textevent timeoffset="840" message="Back to high cadence (100 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="100" />
+    <textevent timeoffset="1080" message="Low cadence (65 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="65" />
+    <textevent timeoffset="1320" message="High cadence (100 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="100" />
+    <textevent timeoffset="1560" message="Low cadence (65 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="65" />
+    <textevent timeoffset="1800" message="High cadence (100 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="100" />
+    <textevent timeoffset="2040" message="Final low cadence block (65 rpm)." />
+    <SteadyState Duration="240" Power="0.70" cadence="65" />
+    <textevent timeoffset="2280" message="Good work! Cool down for 5 minutes." />
+    <Cooldown Duration="300" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

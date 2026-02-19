@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W1D3 - Aerobic Tempo Intro 50min</name>
+  <description>Introductory tempo work to gently raise aerobic capacity.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Tempo" />
+    <tag name="Base" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Begin with an 8-minute warm-up. Build your heart rate gradually." />
+    <Warmup Duration="480" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="480" message="Start your first tempo block. Ride at a challenging but sustainable pace for 6 minutes." />
+    <SteadyState Duration="360" Power="0.80" cadence="90" />
+    <textevent timeoffset="840" message="Recovery period. Easy spinning for 3 minutes." />
+    <SteadyState Duration="180" Power="0.55" cadence="85" />
+    <textevent timeoffset="1020" message="Second tempo block. Back to challenging pace for 6 minutes." />
+    <SteadyState Duration="360" Power="0.80" cadence="90" />
+    <textevent timeoffset="1380" message="Another recovery period. Spin easy for 3 minutes." />
+    <SteadyState Duration="180" Power="0.55" cadence="85" />
+    <textevent timeoffset="1560" message="Final tempo block. Push at tempo pace one more time for 6 minutes." />
+    <SteadyState Duration="360" Power="0.80" cadence="90" />
+    <textevent timeoffset="1920" message="Excellent work! Cool down for 6 minutes with easy pedaling." />
+    <Cooldown Duration="360" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

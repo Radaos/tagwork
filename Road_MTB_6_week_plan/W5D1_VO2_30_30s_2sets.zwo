@@ -1,0 +1,22 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W5D1 - VO2max 30/30s (2 Sets)</name>
+  <description>High-intensity 30/30s to build MTB-style repeatability and raise VO2max.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="VO2max" />
+    <tag name="MTB" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up building toward VO2max intensity." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First set: 30/30 intervals (5 minutes). Alternate 30 seconds hard, 30 seconds easy. Stay focused!" />
+    <IntervalsT Repeat="10" OnDuration="30" OffDuration="30" OnPower="1.20" OffPower="0.50" cadence="95" />
+    <textevent timeoffset="900" message="Recovery period (4 minutes). Control your breathing and calm your heart rate." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1140" message="Second set: 30/30 intervals (5 minutes). One more round of high-intensity intervals!" />
+    <IntervalsT Repeat="10" OnDuration="30" OffDuration="30" OnPower="1.20" OffPower="0.50" cadence="95" />
+    <textevent timeoffset="1440" message="Great VO2max work! Cool down for 8 minutes." />
+    <Cooldown Duration="480" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

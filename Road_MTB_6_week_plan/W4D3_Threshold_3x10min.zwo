@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W4D3 - Threshold 3x10min</name>
+  <description>Extended threshold work to push FTP higher and improve climbing strength.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Threshold" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up to prepare for threshold work." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First threshold interval (10 minutes). Ride at threshold power." />
+    <SteadyState Duration="600" Power="1.00" cadence="90" />
+    <textevent timeoffset="1200" message="Recovery period (5 minutes). Gather yourself for the next effort." />
+    <SteadyState Duration="300" Power="0.55" cadence="85" />
+    <textevent timeoffset="1500" message="Second threshold interval (10 minutes)." />
+    <SteadyState Duration="600" Power="1.00" cadence="90" />
+    <textevent timeoffset="2100" message="Recovery period (5 minutes)." />
+    <SteadyState Duration="300" Power="0.55" cadence="85" />
+    <textevent timeoffset="2400" message="Third threshold interval (10 minutes). Final push!" />
+    <SteadyState Duration="600" Power="1.00" cadence="90" />
+    <textevent timeoffset="3000" message="Excellent threshold work! Cool down for 8 minutes." />
+    <Cooldown Duration="480" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

@@ -1,0 +1,22 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W6D3 - Threshold 2x15min</name>
+  <description>Long threshold intervals to consolidate FTP gains and build climbing power.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Threshold" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up to prepare for long threshold intervals." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First threshold interval (15 minutes). Ride strong and controlled at threshold power." />
+    <SteadyState Duration="900" Power="1.00" cadence="90" />
+    <textevent timeoffset="1500" message="Recovery period (6 minutes). Easy pedaling to prepare for the final push." />
+    <SteadyState Duration="360" Power="0.55" cadence="85" />
+    <textevent timeoffset="1860" message="Second threshold interval (15 minutes). The final long effort - maintain your power!" />
+    <SteadyState Duration="900" Power="1.00" cadence="90" />
+    <textevent timeoffset="2760" message="Outstanding threshold performance! Cool down for 8 minutes to finish strong." />
+    <Cooldown Duration="480" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

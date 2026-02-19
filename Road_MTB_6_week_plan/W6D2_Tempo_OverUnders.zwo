@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W6D2 - Tempo Over-Unders</name>
+  <description>Over-under work to improve lactate clearance and climbing resilience.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Tempo" />
+    <tag name="OverUnder" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="8-minute warm-up." />
+    <Warmup Duration="480" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="480" message="First set of over-unders (10 minutes): 2 minutes above tempo, 2 minutes at tempo. Improve your lactate threshold!" />
+    <IntervalsT Repeat="5" OnDuration="120" OffDuration="120" OnPower="0.90" OffPower="0.80" cadence="90" />
+    <textevent timeoffset="1080" message="Recovery period (4 minutes). Easy spinning." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1320" message="Second set of over-unders (10 minutes). Push harder on the overs, recover slightly on the unders." />
+    <IntervalsT Repeat="5" OnDuration="120" OffDuration="120" OnPower="0.90" OffPower="0.80" cadence="90" />
+    <textevent timeoffset="2400" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="2640" message="Third set of over-unders (10 minutes). Final push!" />
+    <IntervalsT Repeat="5" OnDuration="120" OffDuration="120" OnPower="0.90" OffPower="0.80" cadence="90" />
+    <textevent timeoffset="3720" message="Excellent over-under work! Cool down for 6 minutes." />
+    <Cooldown Duration="360" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

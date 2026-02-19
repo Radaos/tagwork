@@ -1,0 +1,30 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W2D2 - Low Cadence Strength</name>
+  <description>MTB-style torque work: low cadence, moderate power.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Strength" />
+    <tag name="MTB" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Begin with a 6-minute warm-up to prepare for strength work." />
+    <Warmup Duration="360" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="360" message="Now shift to low cadence strength work. Keep your cadence at 60 rpm and push hard on the pedals." />
+    <SteadyState Duration="300" Power="0.75" cadence="60" />
+    <textevent timeoffset="660" message="Recovery. Spin easy at higher cadence for 2 minutes." />
+    <SteadyState Duration="120" Power="0.55" cadence="85" />
+    <textevent timeoffset="780" message="Back to low cadence strength (60 rpm). Keep your upper body steady." />
+    <SteadyState Duration="300" Power="0.75" cadence="60" />
+    <textevent timeoffset="1080" message="Recovery spin at higher cadence." />
+    <SteadyState Duration="120" Power="0.55" cadence="85" />
+    <textevent timeoffset="1200" message="Third strength block at low cadence (60 rpm)." />
+    <SteadyState Duration="300" Power="0.75" cadence="60" />
+    <textevent timeoffset="1500" message="Recovery." />
+    <SteadyState Duration="120" Power="0.55" cadence="85" />
+    <textevent timeoffset="1620" message="Final low cadence strength block (60 rpm)." />
+    <SteadyState Duration="300" Power="0.75" cadence="60" />
+    <textevent timeoffset="1920" message="Great work! Cool down with easy spinning for 5 minutes." />
+    <Cooldown Duration="300" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

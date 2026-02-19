@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W4D1 - Sweet Spot 3x12min</name>
+  <description>Longer Sweet Spot intervals to build strong, sustainable power.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="SweetSpot" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up to prepare for Sweet Spot intervals." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First Sweet Spot interval (12 minutes). Settle into a strong, sustainable pace." />
+    <SteadyState Duration="720" Power="0.90" cadence="90" />
+    <textevent timeoffset="1320" message="Recovery period (4 minutes). Easy pedaling." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1560" message="Second Sweet Spot interval (12 minutes). Maintain your strong pace." />
+    <SteadyState Duration="720" Power="0.90" cadence="90" />
+    <textevent timeoffset="2280" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="2520" message="Third Sweet Spot interval (12 minutes). Final push!" />
+    <SteadyState Duration="720" Power="0.90" cadence="90" />
+    <textevent timeoffset="3240" message="Strong work! Cool down for 7 minutes." />
+    <Cooldown Duration="420" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

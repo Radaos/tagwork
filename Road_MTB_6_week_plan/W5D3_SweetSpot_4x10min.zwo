@@ -1,0 +1,30 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W5D3 - Sweet Spot 4x10min</name>
+  <description>Four Sweet Spot intervals to build muscular endurance and FTP durability.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="SweetSpot" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First Sweet Spot interval (10 minutes). Settle into a hard but sustainable pace." />
+    <SteadyState Duration="600" Power="0.90" cadence="90" />
+    <textevent timeoffset="1200" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1440" message="Second Sweet Spot interval (10 minutes)." />
+    <SteadyState Duration="600" Power="0.90" cadence="90" />
+    <textevent timeoffset="2040" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="2280" message="Third Sweet Spot interval (10 minutes)." />
+    <SteadyState Duration="600" Power="0.90" cadence="90" />
+    <textevent timeoffset="2880" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="3120" message="Fourth and final Sweet Spot interval (10 minutes). Almost there!" />
+    <SteadyState Duration="600" Power="0.90" cadence="90" />
+    <textevent timeoffset="3720" message="Outstanding Sweet Spot work! Cool down for 8 minutes." />
+    <Cooldown Duration="480" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

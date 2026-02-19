@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W1D1 - Endurance 45min</name>
+  <description>Easy aerobic endurance to start building your base.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Endurance" />
+    <tag name="Base" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Start with an easy 8-minute warm-up. Gradually increase your effort to prepare your body." />
+    <Warmup Duration="480" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="480" message="Begin easy endurance riding. Maintain a steady, comfortable pace that you can sustain for extended periods." />
+    <SteadyState Duration="480" Power="0.65" cadence="90" />
+    <textevent timeoffset="960" message="Easy spin-down recovery. Keep pedaling smoothly at lower intensity." />
+    <SteadyState Duration="120" Power="0.50" cadence="85" />
+    <textevent timeoffset="1080" message="Back to steady endurance pace." />
+    <SteadyState Duration="480" Power="0.65" cadence="90" />
+    <textevent timeoffset="1560" message="Recovery spin again." />
+    <SteadyState Duration="120" Power="0.50" cadence="85" />
+    <textevent timeoffset="1680" message="Final steady-state block." />
+    <SteadyState Duration="480" Power="0.65" cadence="90" />
+    <textevent timeoffset="2160" message="Cool down with easy pedaling to recover. Gradually reduce your effort over the next 5 minutes." />
+    <Cooldown Duration="300" PowerLow="0.50" PowerHigh="0.40" />
+  </workout>
+</workout_file>

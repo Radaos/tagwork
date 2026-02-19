@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W6D1 - VO2max 3x3min</name>
+  <description>Hard VO2max intervals to sharpen high-end power and MTB punchiness.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="VO2max" />
+    <tag name="MTB" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="10-minute warm-up to build toward VO2max intensity." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First VO2max interval (3 minutes). Push hard at high cadence!" />
+    <SteadyState Duration="180" Power="1.15" cadence="95" />
+    <textevent timeoffset="780" message="Recovery period (4 minutes). Control your breathing." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1020" message="Second VO2max interval (3 minutes). Maintain the intensity!" />
+    <SteadyState Duration="180" Power="1.15" cadence="95" />
+    <textevent timeoffset="1200" message="Recovery period (4 minutes)." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1440" message="Third and final VO2max interval (3 minutes). Give it everything!" />
+    <SteadyState Duration="180" Power="1.15" cadence="95" />
+    <textevent timeoffset="1620" message="Fantastic VO2max effort! Cool down for 8 minutes." />
+    <Cooldown Duration="480" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

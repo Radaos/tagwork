@@ -1,0 +1,22 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W2D3 - Steady Tempo 55min</name>
+  <description>Longer tempo intervals to build sustainable power.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Tempo" />
+    <tag name="Aerobic" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Start with an 8-minute warm-up." />
+    <Warmup Duration="480" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="480" message="Begin your first long tempo effort. Sustain a strong, steady pace for 12 minutes." />
+    <SteadyState Duration="720" Power="0.80" cadence="90" />
+    <textevent timeoffset="1200" message="Recovery period. Spin easy for 4 minutes." />
+    <SteadyState Duration="240" Power="0.55" cadence="85" />
+    <textevent timeoffset="1440" message="Final tempo block. Hold steady tempo pace for 12 more minutes." />
+    <SteadyState Duration="720" Power="0.80" cadence="90" />
+    <textevent timeoffset="2160" message="Excellent effort! Cool down for 7 minutes with easy pedaling." />
+    <Cooldown Duration="420" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

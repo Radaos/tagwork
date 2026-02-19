@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W3D2 - Endurance Spin</name>
+  <description>Low-intensity aerobic ride to support recovery and base building.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Endurance" />
+    <tag name="Recovery" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Easy warm-up for 6 minutes. Spin smoothly to ease into the ride." />
+    <Warmup Duration="360" PowerLow="0.50" PowerHigh="0.65" />
+    <textevent timeoffset="360" message="Settle into a comfortable endurance pace. Focus on smooth, rhythmic pedaling." />
+    <SteadyState Duration="600" Power="0.65" cadence="90" />
+    <textevent timeoffset="960" message="Very easy recovery spin (2 minutes)." />
+    <SteadyState Duration="120" Power="0.50" cadence="85" />
+    <textevent timeoffset="1080" message="Back to endurance pace." />
+    <SteadyState Duration="600" Power="0.65" cadence="90" />
+    <textevent timeoffset="1680" message="Easy recovery spin." />
+    <SteadyState Duration="120" Power="0.50" cadence="85" />
+    <textevent timeoffset="1800" message="Final block at endurance pace." />
+    <SteadyState Duration="600" Power="0.65" cadence="90" />
+    <textevent timeoffset="2400" message="Great recovery session! Cool down for 5 minutes with easy pedaling." />
+    <Cooldown Duration="300" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

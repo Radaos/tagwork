@@ -1,0 +1,26 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W3D1 - Sweet Spot 3x8min</name>
+  <description>Sweet Spot intervals to raise FTP with manageable fatigue.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="SweetSpot" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Start with an 8-minute warm-up." />
+    <Warmup Duration="480" PowerLow="0.50" PowerHigh="0.70" />
+    <textevent timeoffset="480" message="First Sweet Spot interval (8 minutes). Ride hard but controlled in this sweet spot zone." />
+    <SteadyState Duration="480" Power="0.88" cadence="90" />
+    <textevent timeoffset="960" message="Recovery period (3 minutes). Shake out the lactic acid with easy pedaling." />
+    <SteadyState Duration="180" Power="0.55" cadence="85" />
+    <textevent timeoffset="1140" message="Second Sweet Spot interval (8 minutes). Stay focused and maintain your pace." />
+    <SteadyState Duration="480" Power="0.88" cadence="90" />
+    <textevent timeoffset="1620" message="Recovery (3 minutes)." />
+    <SteadyState Duration="180" Power="0.55" cadence="85" />
+    <textevent timeoffset="1800" message="Third and final Sweet Spot interval (8 minutes). You're in the home stretch!" />
+    <SteadyState Duration="480" Power="0.88" cadence="90" />
+    <textevent timeoffset="2280" message="Great work! Cool down for 6 minutes with easy spinning." />
+    <Cooldown Duration="360" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

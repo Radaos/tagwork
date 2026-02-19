@@ -1,0 +1,22 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W3D3 - Threshold 2x10min</name>
+  <description>First threshold session of the plan. Controlled but challenging.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Threshold" />
+    <tag name="FTP" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Warm up for 10 minutes. Build gradually toward threshold intensity." />
+    <Warmup Duration="600" PowerLow="0.50" PowerHigh="0.75" />
+    <textevent timeoffset="600" message="First threshold block (10 minutes). Ride at your threshold power level - hard but paced." />
+    <SteadyState Duration="600" Power="1.00" cadence="90" />
+    <textevent timeoffset="1200" message="Recovery period (5 minutes). Easy spinning to prepare for the second effort." />
+    <SteadyState Duration="300" Power="0.55" cadence="85" />
+    <textevent timeoffset="1500" message="Second threshold block (10 minutes). Hold your threshold power for 10 more minutes." />
+    <SteadyState Duration="600" Power="1.00" cadence="90" />
+    <textevent timeoffset="2100" message="Excellent work on those threshold efforts! Cool down for 7 minutes." />
+    <Cooldown Duration="420" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>

@@ -1,0 +1,32 @@
+<workout_file>
+  <author>Road+MTB 6 week</author>
+  <name>W1D2 - Cadence Variations 40min</name>
+  <description>Neuromuscular control with alternating high and low cadence at low intensity.</description>
+  <sportType>bike</sportType>
+  <tags>
+    <tag name="Cadence" />
+    <tag name="Base" />
+  </tags>
+  <workout>
+    <textevent timeoffset="0" message="Start with a 6-minute warm-up. Ease into the ride gradually." />
+    <Warmup Duration="360" PowerLow="0.50" PowerHigh="0.65" />
+    <textevent timeoffset="360" message="3 minutes at high cadence (100 rpm). Focus on smooth, quick pedaling." />
+    <SteadyState Duration="180" Power="0.60" cadence="100" />
+    <textevent timeoffset="540" message="Now shift to low cadence (75 rpm). Feel the increased muscular load." />
+    <SteadyState Duration="180" Power="0.60" cadence="75" />
+    <textevent timeoffset="720" message="Back to high cadence (100 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="100" />
+    <textevent timeoffset="900" message="Low cadence again (75 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="75" />
+    <textevent timeoffset="1080" message="High cadence (100 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="100" />
+    <textevent timeoffset="1260" message="Low cadence (75 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="75" />
+    <textevent timeoffset="1440" message="Final high cadence block (100 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="100" />
+    <textevent timeoffset="1620" message="Last low cadence block (75 rpm)." />
+    <SteadyState Duration="180" Power="0.60" cadence="75" />
+    <textevent timeoffset="1800" message="Cool down with easy spinning for 4 minutes." />
+    <Cooldown Duration="240" PowerLow="0.55" PowerHigh="0.40" />
+  </workout>
+</workout_file>
